@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Trip Planner</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f9f4; color: #333; }
+    header { background: #56cc9d; color: white; padding: 20px; text-align: center; }
+    nav { background: #a2ded0; padding: 10px; text-align: center; }
+    nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: bold; }
+    section { padding: 20px; max-width: 800px; margin: auto; }
+    .form-box { background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select, button { padding: 10px; margin-top: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; }
+    button { background-color: #56cc9d; color: white; font-weight: bold; cursor: pointer; }
+    .plan { background: #e8fff8; padding: 15px; border-radius: 10px; margin-top: 20px; }
+    footer { text-align: center; background: #56cc9d; color: white; padding: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 Budget Trip Planner</h1>
+    <p>Plan your trip without breaking the bank!</p>
+  </header>
+  <nav>
+    <a href="#plan">Plan Trip</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="plan">
+    <h2>🧳 Plan Your Budget Trip</h2>
+    <div class="form-box">
+      <label>Choose a destination:</label>
+      <select id="destination">
+        <option value="Goa">Goa</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Manali">Manali</option>
+        <option value="Hyderabad">Hyderabad</option>
+      </select>
+
+      <label>Enter your budget (in ₹):</label>
+      <input type="number" id="budget" placeholder="e.g., 5000" required>
+
+      <button onclick="generatePlan()">Show My Plan</button>
+
+      <div class="plan" id="planOutput" style="display:none;"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>✉️ Contact Us</h2>
+    <form onsubmit="alert('Thanks for reaching out! We will contact you soon.'); return false;">
+      <label>Your Message:</label><br>
+      <textarea rows="4" cols="40" required></textarea><br>
+      <button>Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>✨ Travel Tip: "Collect moments, not things." | Made for Madhu by Musti Fellow</p>
+  </footer>
+
+  <script>
+    function generatePlan() {
+      const dest = document.getElementById("destination").value;
+      const budget = parseInt(document.getElementById("budget").value);
+      const planDiv = document.getElementById("planOutput");
+
+      let output = `<h3>🗺️ Trip Plan for ${dest}</h3>`;
+      if (budget < 3000) {
+        output += `<p>💡 Stay: Hostel or Couchsurfing</p>
+                   <p>🍴 Food: Street food/local mess</p>
+                   <p>🚌 Transport: Local buses or shared autos</p>
+                   <p>🏞️ Visit: Free attractions and beaches</p>`;
+      } else if (budget < 8000) {
+        output += `<p>💡 Stay: Budget hotel (₹800-1000/day)</p>
+                   <p>🍴 Food: Local restaurants</p>
+                   <p>🚌 Transport: Shared cabs or bikes</p>
+                   <p>🏞️ Visit: Mix of free and paid spots</p>`;
+      } else {
+        output += `<p>💡 Stay: 3-star hotel or Airbnb</p>
+                   <p>🍴 Food: Café + local dining</p>
+                   <p>🚌 Transport: Rented vehicle or cabs</p>
+                   <p>🏞️ Visit: Tourist spots, guided tours</p>`;
+      }
+      output += `<p>📺 Watch this vlog: <a href='https://www.youtube.com/results?search_query=budget+trip+to+${dest}' target='_blank'>YouTube Budget Trip to ${dest}</a></p>`;
+
+      planDiv.innerHTML = output;
+      planDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
